@@ -1,0 +1,55 @@
+.container {
+  padding-top: 44px;
+  display: flex;
+  gap: 40px;
+  border-top: 1px solid #DADDE1;
+}
+
+.featuresContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 76px;
+  width: 631px;
+  border-radius: 10px;
+  padding: 44px 52px 28px 52px;
+  flex-shrink: 0;
+  background: #F7F7F7;
+  font-weight: 500;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+.title::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: #DADDE1;
+  margin-top: 24px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table td {
+  padding-bottom: 16px;
+  border: none;
+}
+
+.td {
+  text-align: right;
+}
+
+.bookForm {
+  border: 1px solid #DADDE1;
+  border-radius: 10px;
+  width: 641px;
+  height: 588px;
+  flex-shrink: 0;
+}

@@ -1,0 +1,53 @@
+.imgContainer {
+  border-radius: 10px;
+  width: 292px;
+  height: 320px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+}
+
+.heart {
+  width: 24px;
+  height: 24px;
+  fill: #101828;
+  transition: fill 250ms linear;
+}
+
+.heart:hover {
+  fill: #E44848;
+}
+
+.redHeart {
+  fill: #E44848;
+}
+
+.priceSubCntr {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 525px;
+  margin-bottom: 24px;
+}
+

@@ -1,0 +1,67 @@
+
+.container {
+  padding-top: 44px;
+  display: flex;
+  gap: 40px;
+  border-top: 1px solid #DADDE1;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  margin-top: 12px;
+}
+
+.reviewsContainer {
+  width: 631px;
+  flex-shrink: 0;
+}
+
+.avatarContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.avatar {
+  border-radius: 60px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F2F4F7;
+  margin-bottom: 4px;
+}
+
+.letter {
+  font-size: 24px;
+  line-height: 1.33;
+  color: #E44848;
+}
+
+.stars {
+  display: flex;
+  gap: 4px;
+}
+
+.star {
+  fill: #FFC531;
+  width: 16px;
+  height: 16px;
+}
+
+.emptyStar {
+  fill: #F2F4F7;
+}
+
+.bookForm {
+  border: 1px solid #DADDE1;
+  border-radius: 10px;
+  width: 641px;
+  height: 588px;
+  flex-shrink: 0;
+}

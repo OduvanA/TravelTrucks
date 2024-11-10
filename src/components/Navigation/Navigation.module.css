@@ -1,0 +1,36 @@
+.navbar {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  position: relative;
+  background-color: #F7F7F7;
+}
+
+.navLinks {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 32px;
+  font-weight: 500;
+  margin: 24px 64px;
+  position: relative;
+}
+
+.logo {
+  position: absolute;
+  top: 28px;
+  left: 64px;
+}
+
+.link {
+  transition: color 250ms linear;
+}
+
+.link:hover,
+.link:focus {
+  color: #D84343;
+}
+
+.active {
+  color: #D84343;
+}

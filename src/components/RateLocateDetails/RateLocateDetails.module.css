@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+
+.subContainer {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0%;
+}
+
+.map {
+  width: 16px;
+  height: 16px;
+}
+
+.star {
+  fill: #FFC531;
+  width: 16px;
+  height: 16px;
+}
+
+.emptyStar {
+  fill: #F2F4F7;
+}

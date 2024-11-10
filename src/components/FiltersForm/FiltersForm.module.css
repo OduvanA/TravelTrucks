@@ -1,0 +1,38 @@
+.container {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  flex-shrink: 0;
+}
+
+input[type="checkbox"],
+input[type="radio"]
+ {
+  appearance: none;
+  -webkit-appearance: none;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.vehicleContainer {
+  display: flex;
+  width: 360px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+label {
+  text-align: center;
+  border: 1px solid #DADDE1;
+  border-radius: 12px;
+  padding: 16px 18px;
+  width: calc((100% - 12px * 2) / 3);
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: color 250ms linear;
+
+}
