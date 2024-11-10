@@ -8,7 +8,6 @@ export const fetchCampers = createAsyncThunk(
   async (_, { getState, rejectWithValue }) => {
     try {
       const { location, AC, transmission, kitchen, TV, bathroom, form } = getState().filters.filters;
-      console.log(getState().filters);
       
       const params = {
         location: location || undefined,
