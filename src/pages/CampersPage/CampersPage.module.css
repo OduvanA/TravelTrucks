@@ -2,6 +2,6 @@
   display: flex;
   align-items: flex-start;
   gap: 64px;
-  max-width: 1440px;
+  width: 1440px;
   padding: 48px 64px 52px 64px;
 }

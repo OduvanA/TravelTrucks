@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import { Navigate, NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCamperById } from "../../redux/operations";
 import css from './CamperDetailsPage.module.css'
@@ -16,6 +16,7 @@ export default function CamperDetailsPage() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const loading = useSelector(selectIsLoading);
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(fetchCamperById(`${id}`));
@@ -26,7 +27,7 @@ export default function CamperDetailsPage() {
   return (
     !loading &&
     camper && (
-      <div>
+      <div className={css.container}>
         <div className={css.titleDetailsContainer}>
           <h2 className={css.title}>{camper.name}</h2>
           <RateLocateDetails camper={camper}/>
@@ -48,6 +49,7 @@ export default function CamperDetailsPage() {
           <NavLink to='reviews' className={buildLinkClass}>Reviews</NavLink>
         </li>
         </ul>
+        {location.pathname === `/catalog/${id}` && <Navigate to="features" replace />}
         <Outlet/>
       </div>
   ))

@@ -4,6 +4,7 @@
   justify-content: center;
   position: relative;
   background-color: #F7F7F7;
+  width: 1440px;
 }
 
 .navLinks {
@@ -13,7 +14,6 @@
   gap: 32px;
   font-weight: 500;
   margin: 24px 64px;
-  position: relative;
 }
 
 .logo {
