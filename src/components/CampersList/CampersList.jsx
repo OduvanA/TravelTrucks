@@ -1,31 +1,43 @@
-import { useSelector } from "react-redux"
-import { selectCampers } from "../../redux/selectors";
+import { useDispatch, useSelector } from "react-redux"
+import { selectCampers, selectIsLoading, selectTotal } from "../../redux/selectors";
 import Camper from "../Camper/Camper";
 import css from './CampersList.module.css';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { fetchCampers } from "../../redux/operations";
 
 export default function CampersList() {
-  const [visibleCount, setVisibleCount] = useState(3);
+  // const [page, setPage] = useState(1);
+  const page = 1;
+  const [limit, setLimit] = useState(4);
+  // const limit = 4;
+
+  const dispatch = useDispatch();
+  const campers = useSelector(selectCampers);
+  const totalCampers = useSelector(selectTotal);
+  const isLoading = useSelector(selectIsLoading);
+
+  useEffect(() => {
+    dispatch(fetchCampers({ page, limit }));
+  }, [dispatch, page, limit]);
 
   const handleLoadMore = () => {
-    setVisibleCount((prevCount) => prevCount + 4);
+    if (!isLoading) {
+    setLimit((prevLimit) => prevLimit + 4);
+  }
   };
 
-  const campers = useSelector(selectCampers);
-  const visibleCampers = campers.slice(0, visibleCount);
-  
   return (
     <div>
     <ul className={css.list}>
-      {visibleCampers.map((camper) => (
+      {campers.map((camper) => (
       <li key={camper.id} className={css.listItem}>
           <Camper camper={camper} />
       </li>
       ))}
       </ul> 
-      {visibleCount < campers.length && (
-        <button className={css.button} onClick={handleLoadMore} type="button">
-          Load more
+      {campers.length < totalCampers &&  (
+        <button className={css.button} onClick={handleLoadMore} type="button" disabled={isLoading}>
+          {isLoading ? 'Loading...' : 'Load more'}
         </button>
       )}
     </div>  

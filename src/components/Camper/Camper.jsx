@@ -37,8 +37,10 @@ export default function Camper({ camper }) {
           <div className={css.priceSubCntr}>
             <p>€{parseFloat(camper.price).toFixed(2)}</p>
               <BsSuitHeart
-                onClick={handleFavorite}
-                className={clsx(css.heart, isFavorite && css.redHeart)} />
+              onClick={handleFavorite}
+              style={{ color: isFavorite ? '#E44848' : '#101828'}}
+              className={css.heart}
+            />
           </div>
         </div>
         <RateLocateDetails camper={camper}/>

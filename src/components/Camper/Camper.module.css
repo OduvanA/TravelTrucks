@@ -24,15 +24,11 @@
 .heart {
   width: 24px;
   height: 24px;
-  fill: #101828;
   transition: fill 250ms linear;
+  cursor: pointer;
 }
 
 .heart:hover {
-  fill: #E44848;
-}
-
-.redHeart {
   fill: #E44848;
 }
 
