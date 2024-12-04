@@ -17,7 +17,7 @@ export default function App() {
   return (
     <>
       <Navigation />
-      <Suspense fallback={<CircleLoader color="#D84343" />}>
+      <Suspense fallback={<CircleLoader className='loader' color="#D84343" />}>
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/catalog' element={<CampersPage />} />
