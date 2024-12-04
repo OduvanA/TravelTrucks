@@ -4,7 +4,8 @@ import { fetchCamperById, fetchCampers } from "./operations";
 
 const handleRejected = (state, action) => {
   state.isLoading = false;
-  state.error = action.payload;
+  state.error = action.payload || "Failed to fetch campers.";
+  state.isEmpty = true;
 };
 
 const campersSlice = createSlice({
@@ -15,6 +16,7 @@ const campersSlice = createSlice({
     currentCamper: null,
     isLoading: false,
     error: null,
+    isEmpty: false,
   },
   extraReducers: (builder) => {
     builder
@@ -28,8 +30,13 @@ const campersSlice = createSlice({
         state.error = null;
         state.items = action.payload.items;
         state.total = action.payload.total;
+        state.isEmpty = action.payload.length === 0; 
       })
-      .addCase(fetchCampers.rejected, handleRejected)
+      .addCase(fetchCampers.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+        state.isEmpty = true;
+      })
       .addCase(fetchCamperById.pending, (state) => {
         state.isLoading = true;
       })
@@ -37,7 +44,10 @@ const campersSlice = createSlice({
         state.isLoading = false;
         state.currentCamper = action.payload;
       })
-      .addCase(fetchCamperById.rejected, handleRejected)
+      .addCase(fetchCamperById.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
   }
 })
 

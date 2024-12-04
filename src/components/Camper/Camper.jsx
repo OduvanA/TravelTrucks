@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import css from './Camper.module.css';
 import { BsSuitHeart } from "react-icons/bs";
 import Button from '../Button/Button';

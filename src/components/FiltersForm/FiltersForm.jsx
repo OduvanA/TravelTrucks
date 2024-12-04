@@ -1,6 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateFilters } from "../../redux/filtersSlice";
 import { fetchCampers } from "../../redux/operations";
+import { BsMap } from "react-icons/bs";
 import { BsDiagram3 } from "react-icons/bs";
 import { BsWind } from "react-icons/bs";
 import { BsCupHot } from "react-icons/bs";
@@ -10,128 +11,163 @@ import { HiOutlineSquares2X2 } from "react-icons/hi2";
 import { BsGrid3X3Gap } from "react-icons/bs";
 import { BsGrid1X2 } from "react-icons/bs";
 import css from './FiltersForm.module.css';
+import { useState } from "react";
 
 
 export default function FiltersForm() {
   const dispatch = useDispatch();
-  const filters = useSelector((state) => state.filters);
 
-  const handleLocationChange = (event) => {
-    dispatch(updateFilters({ location: event.target.value }));
-    dispatch(fetchCampers());
-  }
+  const [localFilters, setLocalFilters] = useState({
+    location: "",
+    AC: false,
+    transmission: "",
+    kitchen: false,
+    TV: false,
+    bathroom: false,
+    form: "",
+  });
 
-    const handleTransmissionChange = () => {
-    const newValue = filters.transmission === 'automatic' ? 'manual' : 'automatic';
-    dispatch(updateFilters({ name: 'transmission', value: newValue }));
-    dispatch(fetchCampers());
-  }
+    // Handle local filter changes
+  const handleInputChange = (name, value) => {
+    setLocalFilters((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-  const handleFilterChange = (name, value) => {
-    dispatch(updateFilters({ name, value }));
-    dispatch(fetchCampers());
+  // Handle form submission
+  const handleSearch = () => {
+    dispatch(updateFilters(localFilters));
+    dispatch(fetchCampers({page: 1, limit: 4}));
   };
 
   return (
     <div className={css.container}>
+      <p className={css.locationTitle}>Location</p>
       {/* Location */}
-      <input
-        type="text"
-        placeholder="Kyiv, Ukraine"
-        value={filters.location || ''}
-        onChange={handleLocationChange}
-      />
-      <p className={css.text}>Vehicle equipment</p>
+      <div className={css.locationInputWrapper}>
+        <BsMap className={css.map} />
+        <input
+          type="text"
+          className={css.locationInput}
+          placeholder='Kyiv, Ukraine'
+          value={localFilters.location}
+          onChange={(event) => handleInputChange("location", event.target.value)}
+        />        
+      </div>
+      <p className={css.filtersTitle}>Filters</p>
+      <p className={css.vehicleTitle}>Vehicle equipment</p>
       {/* Vehicle equipment */}
       <div className={css.vehicleContainer}>
       <label >
         <input
           type="checkbox" 
-          checked={filters.AC || false}
-          onChange={(event) => handleFilterChange('AC', event.target.checked)}
-        />
-        <BsWind/><br />
-        AC
+          checked={localFilters.AC}
+          onChange={(event) => handleInputChange("AC", event.target.checked)}
+          />
+          <span>
+            <BsWind style={{fontSize: '28px'}}/><br />
+            AC
+          </span> 
       </label>
       <label>
         <input
           type="checkbox"
-          checked={filters.transmission === 'automatic'}
-          onChange={handleTransmissionChange}
-        />
-        <BsDiagram3/><br />
-        Automatic
+          checked={localFilters.transmission === 'automatic'}
+          onChange={() =>
+              handleInputChange(
+                "transmission",
+                localFilters.transmission === "automatic" ? "manual" : "automatic"
+              )
+            }
+          />
+          <span>
+            <BsDiagram3 style={{fontSize: '28px'}}/><br />
+            Automatic            
+          </span>
       </label>
       <label>
         <input
           type="checkbox"
-          checked={filters.kitchen || false}
-          onChange={(event) => handleFilterChange('kitchen', event.target.checked)}
-        />
-        <BsCupHot/><br />
-        Kitchen
+          checked={localFilters.kitchen}
+          onChange={(event) => handleInputChange('kitchen', event.target.checked)}
+          />
+        <span>
+            <BsCupHot style={{ fontSize: '28px' }} /><br />
+          Kitchen            
+        </span>
       </label>
       <label>
         <input
           type="checkbox"
-          checked={filters.TV || false}
-          onChange={(event) => handleFilterChange('TV', event.target.checked)}
-        />
-        <MdTv/><br />
-        TV
+          checked={localFilters.TV}
+          onChange={(event) => handleInputChange('TV', event.target.checked)}
+          />
+        <span>
+            <MdTv style={{ fontSize: '28px' }} /><br />
+          TV          
+        </span>
       </label>
       <label>
         <input
           type="checkbox"
-          checked={filters.bathroom || false}
-          onChange={(event) => handleFilterChange('bathroom', event.target.checked)}
+          checked={localFilters.bathroom}
+          onChange={(event) => handleInputChange('bathroom', event.target.checked)}
         />
-        <PiShower/><br />
-        Bathroom
+        <span>
+            <PiShower style={{ fontSize: '28px' }} /><br />
+          Bathroom          
+        </span>
       </label>  
-      </div>
-      
+      </div>     
 
       {/* Vehicle type */}
       <div>
-        <p>Vehicle type</p>
+        <p className={css.vehicleTitle }>Vehicle type</p>
         <div className={css.vehicleContainer}>
           <label>
           <input
             type="radio"
             name="form"
             value="panelTruck"
-            checked={filters.form === 'panelTruck'}
-            onChange={() => handleFilterChange('form', 'panelTruck')}
+            checked={localFilters.form === 'panelTruck'}
+            onChange={() => handleInputChange('form', 'panelTruck')}
           />
-          <BsGrid1X2/><br />
-          Van
+          <span>
+              <BsGrid1X2 style={{ fontSize: '28px' }} /><br />
+          Van            
+          </span>
         </label>
         <label>
           <input
             type="radio"
             name="form"
             value="fullyIntegrated"
-            checked={filters.form === 'fullyIntegrated'}
-            onChange={() => handleFilterChange('form', 'fullyIntegrated')}
+            checked={localFilters.form === 'fullyIntegrated'}
+            onChange={() => handleInputChange('form', 'fullyIntegrated')}
           />
-          <HiOutlineSquares2X2/><br />
-          Fully Integrated
+          <span>
+              <HiOutlineSquares2X2 style={{ fontSize: '28px' }} /><br />
+            Fully Integrated            
+          </span>
         </label>
         <label>
           <input
             type="radio"
             name="form"
             value="alcove"
-            checked={filters.form === 'alcove'}
-            onChange={() => handleFilterChange('form', 'alcove')}
+            checked={localFilters.form === 'alcove'}
+            onChange={() => handleInputChange('form', 'alcove')}
           />
-          <BsGrid3X3Gap/><br />
-          Alcove
+          <span>
+              <BsGrid3X3Gap style={{ fontSize: '28px' }} /><br />
+            Alcove            
+          </span> 
         </label>
         </div>
         
       </div>
+      <button type="button" className={css.button} onClick={handleSearch}>Search</button>
     </div>
   );
 };

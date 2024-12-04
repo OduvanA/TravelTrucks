@@ -9,10 +9,10 @@ export const fetchCampers = createAsyncThunk(
     try {
       const { location, AC, transmission, kitchen, TV, bathroom, form } = getState().filters.filters;
       
-      const params = {
+      const filters = {
         location: location || undefined,
         AC: AC ? true : undefined,
-        transmission: transmission === 'automatic' ? 'automatic' : 'manual',
+        transmission: transmission === 'automatic' ? 'automatic' : undefined,
         kitchen: kitchen ? true : undefined,
         TV: TV ? true : undefined,
         bathroom: bathroom ? true : undefined,
@@ -21,10 +21,20 @@ export const fetchCampers = createAsyncThunk(
         limit: limit,
       };
 
-      console.log(params);
-      
+      // Remove undefined keys
+      const queryParams = new URLSearchParams();
+      for (const [key, value] of Object.entries(filters)) {
+        if (value !== undefined) {
+          queryParams.append(key, value);
+        }
+      }
+  
+      const newUrl = `${window.location.pathname}?${queryParams.toString()}`;
+      window.history.replaceState(null, '', newUrl);
+        
+      const url = `/campers?${queryParams.toString()}`;
 
-      const response = await axios.get('/campers', { params });
+      const response = await axios.get(url);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);

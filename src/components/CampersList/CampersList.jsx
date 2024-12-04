@@ -1,20 +1,19 @@
 import { useDispatch, useSelector } from "react-redux"
-import { selectCampers, selectIsLoading, selectTotal } from "../../redux/selectors";
+import { selectCampers, selectIsEmpty, selectIsLoading, selectTotal } from "../../redux/selectors";
 import Camper from "../Camper/Camper";
 import css from './CampersList.module.css';
 import { useEffect, useState } from "react";
 import { fetchCampers } from "../../redux/operations";
 
 export default function CampersList() {
-  // const [page, setPage] = useState(1);
   const page = 1;
   const [limit, setLimit] = useState(4);
-  // const limit = 4;
 
   const dispatch = useDispatch();
   const campers = useSelector(selectCampers);
   const totalCampers = useSelector(selectTotal);
   const isLoading = useSelector(selectIsLoading);
+  const isEmpty = useSelector(selectIsEmpty);
 
   useEffect(() => {
     dispatch(fetchCampers({ page, limit }));
@@ -25,6 +24,8 @@ export default function CampersList() {
     setLimit((prevLimit) => prevLimit + 4);
   }
   };
+
+  if (isEmpty) return <p>No campers found. Try adjusting your filters.</p>;
 
   return (
     <div>
