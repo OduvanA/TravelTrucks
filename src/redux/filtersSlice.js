@@ -9,6 +9,7 @@ const initialState = {
     TV: false,
     bathroom: false,
     form: '',
+    limit: 4,
   },
 };
 
@@ -22,9 +23,12 @@ const filtersSlice = createSlice({
     resetFilters: (state) => {
       state.filters = initialState.filters;
     },
+    updateLimit(state, action) {
+      state.filters.limit = action.payload;
+    },
   },  
 })
 
-export const { updateFilters, resetFilters } = filtersSlice.actions;
+export const { updateFilters, resetFilters, updateLimit } = filtersSlice.actions;
 
 export const filtersReducer = filtersSlice.reducer;

@@ -5,9 +5,9 @@ axios.defaults.baseURL = 'https://66b1f8e71ca8ad33d4f5f63e.mockapi.io';
 
 export const fetchCampers = createAsyncThunk(
   'campers/fetchCampers',
-  async ({ page, limit }, { getState, rejectWithValue }) => {
+  async (_, { getState, rejectWithValue }) => {
     try {
-      const { location, AC, transmission, kitchen, TV, bathroom, form } = getState().filters.filters;
+      const { location, AC, transmission, kitchen, TV, bathroom, form, limit } = getState().filters.filters;
       
       const filters = {
         location: location || undefined,
@@ -17,7 +17,7 @@ export const fetchCampers = createAsyncThunk(
         TV: TV ? true : undefined,
         bathroom: bathroom ? true : undefined,
         form: form || undefined,
-        page: page,
+        page: 1,
         limit: limit,
       };
 

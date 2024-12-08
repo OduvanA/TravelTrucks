@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { updateFilters } from "../../redux/filtersSlice";
+import { updateFilters, updateLimit } from "../../redux/filtersSlice";
 import { fetchCampers } from "../../redux/operations";
 import { BsMap } from "react-icons/bs";
 import { BsDiagram3 } from "react-icons/bs";
@@ -39,7 +39,8 @@ export default function FiltersForm() {
   const handleSearch = (event) => {
     event.preventDefault();
     dispatch(updateFilters(localFilters));
-    dispatch(fetchCampers({ page: 1, limit: 4 }));
+    dispatch(updateLimit(4));
+    dispatch(fetchCampers());
  
     setLocalFilters({
       location: "",
