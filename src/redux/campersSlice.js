@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { fetchCamperById, fetchCampers } from "./operations";
 
 
-const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload || "Failed to fetch campers.";
-  state.isEmpty = true;
-};
+// const handleRejected = (state, action) => {
+//   state.isLoading = false;
+//   state.error = action.payload || "Failed to fetch campers.";
+//   state.isEmpty = true;
+// };
 
 const campersSlice = createSlice({
   name: 'campers',

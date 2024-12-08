@@ -1,0 +1,73 @@
+.container {
+  border: 1px solid #DADDE1;
+  border-radius: 10px;
+  width: 641px;
+  padding: 44px;
+  flex-shrink: 0;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  margin-bottom: 8px;
+}
+
+.description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #6C717B;
+  margin-bottom: 24px;
+}
+
+.fieldsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.field,
+.textarea {
+  border-radius: 12px;
+  padding: 18px;
+  width: 100%;
+  background: #F7F7F7;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  background-color: #F7F7F7;
+  border: none;
+  outline: transparent;
+  outline-offset: 2px;
+}
+
+.field::placeholder {
+  color: #6C717B;
+}
+
+.textarea {
+  resize: none;
+  height: 118px;
+}
+
+.error {
+  color: #E44848;
+  font-size: 12px;
+}
+
+.button {
+  display: inline-flex;
+  padding: 16px 60px;
+  border-radius: 200px;
+  background: #E44848;
+  color: #ffffff;
+  margin-left: 205.5px;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #D84343;
+}
+

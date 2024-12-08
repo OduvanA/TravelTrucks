@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { selectCurrentCamper } from "../../redux/selectors";
 import css from './CamperFeatures.module.css';
 import FeaturesList from "../FeaturesList/FeaturesList";
+import BookingForm from "../BookingForm/BookingForm";
 
 
 export default function CamperFeatures() {
@@ -44,7 +45,7 @@ const camper = useSelector(selectCurrentCamper);
           </table>
         </div>
       </div>
-      <div className={css.bookForm}></div>
+      <BookingForm />
     </div>
   );
 }

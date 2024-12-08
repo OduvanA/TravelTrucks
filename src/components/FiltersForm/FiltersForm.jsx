@@ -36,13 +36,24 @@ export default function FiltersForm() {
   };
 
   // Handle form submission
-  const handleSearch = () => {
+  const handleSearch = (event) => {
+    event.preventDefault();
     dispatch(updateFilters(localFilters));
-    dispatch(fetchCampers({page: 1, limit: 4}));
+    dispatch(fetchCampers({ page: 1, limit: 4 }));
+ 
+    setLocalFilters({
+      location: "",
+      AC: false,
+      transmission: "",
+      kitchen: false,
+      TV: false,
+      bathroom: false,
+      form: "",
+    });
   };
 
   return (
-    <div className={css.container}>
+    <form className={css.container} onSubmit={handleSearch}>
       <p className={css.locationTitle}>Location</p>
       {/* Location */}
       <div className={css.locationInputWrapper}>
@@ -167,7 +178,7 @@ export default function FiltersForm() {
         </div>
         
       </div>
-      <button type="button" className={css.button} onClick={handleSearch}>Search</button>
-    </div>
+      <button type="submit" className={css.button} >Search</button>
+    </form>
   );
 };

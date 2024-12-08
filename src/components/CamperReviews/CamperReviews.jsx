@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { selectCurrentCamper } from "../../redux/selectors";
 import { FaStar } from "react-icons/fa6";
 import css from './CamperReviews.module.css'
+import BookingForm from "../BookingForm/BookingForm";
 
 export default function CamperReviews() {
   const camper = useSelector(selectCurrentCamper);
@@ -33,7 +34,7 @@ export default function CamperReviews() {
           ))}
         </ul>
       </div>
-      <div className={css.bookForm}></div>
+     <BookingForm />
     </div>
   );
 }
