@@ -71,7 +71,7 @@ export default function FiltersForm() {
       <p className={css.vehicleTitle}>Vehicle equipment</p>
       {/* Vehicle equipment */}
       <div className={css.vehicleContainer}>
-      <label >
+      <label className={css.label}>
         <input
           type="checkbox" 
           checked={localFilters.AC}
@@ -82,7 +82,7 @@ export default function FiltersForm() {
             AC
           </span> 
       </label>
-      <label>
+      <label className={css.label}>
         <input
           type="checkbox"
           checked={localFilters.transmission === 'automatic'}
@@ -98,7 +98,7 @@ export default function FiltersForm() {
             Automatic            
           </span>
       </label>
-      <label>
+      <label className={css.label}>
         <input
           type="checkbox"
           checked={localFilters.kitchen}
@@ -109,7 +109,7 @@ export default function FiltersForm() {
           Kitchen            
         </span>
       </label>
-      <label>
+      <label className={css.label}>
         <input
           type="checkbox"
           checked={localFilters.TV}
@@ -120,7 +120,7 @@ export default function FiltersForm() {
           TV          
         </span>
       </label>
-      <label>
+      <label className={css.label}>
         <input
           type="checkbox"
           checked={localFilters.bathroom}
@@ -137,7 +137,7 @@ export default function FiltersForm() {
       <div>
         <p className={css.vehicleTitle }>Vehicle type</p>
         <div className={css.vehicleContainer}>
-          <label>
+          <label className={css.label}>
           <input
             type="radio"
             name="form"
@@ -150,7 +150,7 @@ export default function FiltersForm() {
           Van            
           </span>
         </label>
-        <label>
+        <label className={css.label}>
           <input
             type="radio"
             name="form"
@@ -163,7 +163,7 @@ export default function FiltersForm() {
             Fully Integrated            
           </span>
         </label>
-        <label>
+        <label className={css.label}>
           <input
             type="radio"
             name="form"
